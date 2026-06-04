@@ -45,10 +45,16 @@ function renderMeta(payload) {
   const source = payload.source === "live" ? "Live feeds" : "Fallback local data";
   const feeds = payload.feedsUsed?.length ? payload.feedsUsed.join(", ") : "None";
   const errors = payload.errors?.length ? payload.errors.join(" | ") : "None";
+  const windowDays = payload.windowDays || 30;
+  const sourceCounts = payload.sourceCounts?.length
+    ? payload.sourceCounts.map((item) => `${item.name} (${item.count})`).join(", ")
+    : "None";
 
   liveMeta.innerHTML = `
+    <span class="meta-pill">Window: <strong>Last ${windowDays} days</strong></span>
     <span class="meta-pill">Data source: <strong>${source}</strong></span>
     <span class="meta-pill">Feeds: <strong>${feeds}</strong></span>
+    <span class="meta-pill">Source mix: <strong>${sourceCounts}</strong></span>
     <span class="meta-pill">Last refresh: <strong>${updatedAt}</strong></span>
     <span class="meta-pill">Feed errors: <strong>${errors}</strong></span>
   `;
