@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recently Funded Startups</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <p class="eyebrow">No Login Required</p>
+        <h1>Recently Funded Startups</h1>
+        <p class="subtitle">
+          A simple public tracker for startup funding rounds. Search and filter instantly.
+        </p>
+      </section>
+
+      <section class="controls">
+        <input id="searchInput" type="search" placeholder="Search by startup, sector, country..." />
+        <select id="sectorFilter">
+          <option value="">All sectors</option>
+        </select>
+      </section>
+
+      <section class="stats" id="stats"></section>
+
+      <section>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Startup</th>
+                <th>Sector</th>
+                <th>Country</th>
+                <th>Stage</th>
+                <th>Amount (USD)</th>
+                <th>Date</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody id="startupTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

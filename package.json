@@ -1,0 +1,20 @@
+{
+  "name": "startupdata",
+  "version": "1.0.0",
+  "description": "Simple no-auth app for recently funded startups",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "startups",
+    "funding",
+    "express"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

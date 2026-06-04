@@ -1,0 +1,82 @@
+[
+  {
+    "name": "FlowMesh",
+    "country": "India",
+    "sector": "SaaS",
+    "stage": "Seed",
+    "amountUsd": 3500000,
+    "leadInvestors": ["Nexus Ventures", "BlueLotus Capital"],
+    "fundedAt": "2026-05-28",
+    "source": "https://example.com/flowmesh-round"
+  },
+  {
+    "name": "VoltHarvest",
+    "country": "United States",
+    "sector": "Climate Tech",
+    "stage": "Series A",
+    "amountUsd": 18000000,
+    "leadInvestors": ["North Peak", "Gaia Ventures"],
+    "fundedAt": "2026-05-24",
+    "source": "https://example.com/voltharvest-series-a"
+  },
+  {
+    "name": "MediPulse AI",
+    "country": "United Kingdom",
+    "sector": "HealthTech",
+    "stage": "Seed",
+    "amountUsd": 6200000,
+    "leadInvestors": ["Harbor VC"],
+    "fundedAt": "2026-05-19",
+    "source": "https://example.com/medipulse-funding"
+  },
+  {
+    "name": "CargoOrbit",
+    "country": "Germany",
+    "sector": "Logistics",
+    "stage": "Series B",
+    "amountUsd": 41000000,
+    "leadInvestors": ["Transit Growth", "Hanse Capital"],
+    "fundedAt": "2026-05-14",
+    "source": "https://example.com/cargoorbit-series-b"
+  },
+  {
+    "name": "ByteCart",
+    "country": "Singapore",
+    "sector": "FinTech",
+    "stage": "Pre-Seed",
+    "amountUsd": 1400000,
+    "leadInvestors": ["Marina Angels"],
+    "fundedAt": "2026-05-11",
+    "source": "https://example.com/bytecart-preseed"
+  },
+  {
+    "name": "AgroLens",
+    "country": "Brazil",
+    "sector": "AgriTech",
+    "stage": "Seed",
+    "amountUsd": 5000000,
+    "leadInvestors": ["LatAm Future Fund"],
+    "fundedAt": "2026-05-06",
+    "source": "https://example.com/agrolens-seed"
+  },
+  {
+    "name": "SecureNest",
+    "country": "Canada",
+    "sector": "Cybersecurity",
+    "stage": "Series A",
+    "amountUsd": 22000000,
+    "leadInvestors": ["Maple Frontier", "Falcon Ridge"],
+    "fundedAt": "2026-04-30",
+    "source": "https://example.com/securenest-series-a"
+  },
+  {
+    "name": "NovaGrid",
+    "country": "France",
+    "sector": "Energy",
+    "stage": "Seed",
+    "amountUsd": 7900000,
+    "leadInvestors": ["Energie One"],
+    "fundedAt": "2026-04-25",
+    "source": "https://example.com/novagrid-seed"
+  }
+]
