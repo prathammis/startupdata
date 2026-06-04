@@ -2,10 +2,18 @@ const tableBody = document.getElementById("startupTableBody");
 const searchInput = document.getElementById("searchInput");
 const sectorFilter = document.getElementById("sectorFilter");
 const stats = document.getElementById("stats");
+const liveMeta = document.getElementById("liveMeta");
+const refreshButton = document.getElementById("refreshButton");
+
+const CLIENT_REFRESH_INTERVAL_MS = 2 * 60 * 1000;
 
 let allItems = [];
 
 function formatCurrency(amount) {
+  if (amount === null || amount === undefined || Number.isNaN(Number(amount))) {
+    return "N/A";
+  }
+
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -22,7 +30,7 @@ function formatDate(date) {
 }
 
 function renderStats(items) {
-  const totalFunding = items.reduce((sum, item) => sum + item.amountUsd, 0);
+  const totalFunding = items.reduce((sum, item) => sum + (Number(item.amountUsd) || 0), 0);
   const uniqueCountries = new Set(items.map((item) => item.country)).size;
 
   stats.innerHTML = `
@@ -32,11 +40,25 @@ function renderStats(items) {
   `;
 }
 
+function renderMeta(payload) {
+  const updatedAt = payload.updatedAt ? formatDate(payload.updatedAt) : "Unknown";
+  const source = payload.source === "live" ? "Live feeds" : "Fallback local data";
+  const feeds = payload.feedsUsed?.length ? payload.feedsUsed.join(", ") : "None";
+  const errors = payload.errors?.length ? payload.errors.join(" | ") : "None";
+
+  liveMeta.innerHTML = `
+    <span class="meta-pill">Data source: <strong>${source}</strong></span>
+    <span class="meta-pill">Feeds: <strong>${feeds}</strong></span>
+    <span class="meta-pill">Last refresh: <strong>${updatedAt}</strong></span>
+    <span class="meta-pill">Feed errors: <strong>${errors}</strong></span>
+  `;
+}
+
 function renderTable(items) {
   if (!items.length) {
     tableBody.innerHTML = `
       <tr>
-        <td colspan="7">No startups matched your filter.</td>
+        <td colspan="8">No startups matched your filter.</td>
       </tr>
     `;
     renderStats(items);
@@ -48,6 +70,7 @@ function renderTable(items) {
       (item) => `
       <tr>
         <td>${item.name}</td>
+        <td>${item.headline || "-"}</td>
         <td>${item.sector}</td>
         <td>${item.country}</td>
         <td>${item.stage}</td>
@@ -94,17 +117,38 @@ async function init() {
     allItems = payload.items || [];
     fillSectorFilter(allItems);
     renderTable(allItems);
+    renderMeta(payload);
   } catch (error) {
     tableBody.innerHTML = `
       <tr>
-        <td colspan="7">Could not load data. Please refresh.</td>
+        <td colspan="8">Could not load data. Please refresh.</td>
       </tr>
     `;
     console.error(error);
   }
 }
 
+async function triggerServerRefresh() {
+  refreshButton.disabled = true;
+  refreshButton.textContent = "Refreshing...";
+
+  try {
+    const response = await fetch("/api/startups/refresh", { method: "POST" });
+    if (!response.ok) {
+      throw new Error("Refresh failed");
+    }
+    await init();
+  } catch (error) {
+    console.error(error);
+  } finally {
+    refreshButton.disabled = false;
+    refreshButton.textContent = "Refresh Live Data";
+  }
+}
+
 searchInput.addEventListener("input", applyFilters);
 sectorFilter.addEventListener("change", applyFilters);
+refreshButton.addEventListener("click", triggerServerRefresh);
 
 init();
+setInterval(init, CLIENT_REFRESH_INTERVAL_MS);

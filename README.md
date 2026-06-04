@@ -5,7 +5,9 @@ A simple app to view recently funded startups.
 ## Features
 
 - No authentication or login
+- Live funding/news feed ingestion (FinSMEs and TechCrunch funding tag)
 - Public API endpoint: `/api/startups`
+- Manual refresh endpoint: `/api/startups/refresh`
 - Search and filter by sector
 - Mobile-friendly UI
 
@@ -13,7 +15,8 @@ A simple app to view recently funded startups.
 
 - Node.js + Express
 - Plain HTML/CSS/JavaScript frontend
-- JSON file as data source
+- RSS feeds with automatic server refresh every 15 minutes
+- Local JSON fallback source when live feeds fail
 
 ## Run Locally
 
@@ -41,4 +44,4 @@ Startup records are stored in:
 
 - `data/startups.json`
 
-You can replace this with your own data feed later, and the app UI will continue to work.
+This local file is now used as fallback data if live feed fetching fails.

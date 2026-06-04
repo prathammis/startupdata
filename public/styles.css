@@ -61,12 +61,13 @@ h1 {
 .controls {
   margin-top: 18px;
   display: grid;
-  grid-template-columns: 1fr 220px;
+  grid-template-columns: 1fr 220px 190px;
   gap: 10px;
 }
 
 input,
-select {
+select,
+button {
   width: 100%;
   padding: 12px 14px;
   border: 1px solid var(--line);
@@ -74,6 +75,35 @@ select {
   background: var(--panel);
   font: inherit;
   color: var(--ink);
+}
+
+button {
+  cursor: pointer;
+  font-weight: 700;
+  background: linear-gradient(120deg, #0a789f 0%, #05668d 100%);
+  color: #ffffff;
+  border-color: #045472;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.live-meta {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.meta-pill {
+  background: #fff8ed;
+  color: #6a4a1f;
+  border: 1px solid #f2d8ad;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 13px;
 }
 
 .stats {
